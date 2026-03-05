@@ -8,8 +8,8 @@
 
 #include "third_party/blink/renderer/core/frame/navigator_id.h"
 
-#define userAgent                 \
-  userAgent_ChromiumImpl() const; \
+#define userAgent
+  userAgent_ChromiumImpl() const;
   String userAgent
 
 #include <third_party/blink/renderer/core/execution_context/navigator_base.h>  // IWYU pragma: export

@@ -23,7 +23,7 @@ net::NetworkAnonymizationKey CreateNetworkAnonymizationKey(
 
 #define GetSSLUpgradeDecision(HOST, IS_TOP_LEVEL_NAV)              \
   GetSSLUpgradeDecision(CreateNetworkAnonymizationKey(HOST), HOST, \
-                        IS_TOP_LEVEL_NAV)
+  IS_TOP_LEVEL_NAV)
 
 #include <net/http/transport_security_state_unittest.cc>
 #undef GetSSLUpgradeDecision

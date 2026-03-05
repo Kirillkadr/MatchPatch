@@ -11,10 +11,11 @@ static bool CalculateStrictMode(LocalFrame*);
 ```
 ### patch
 ```
-  static int CalculateDeviceWidth(__VA_ARGS__, bool);
-  static int CalculateDeviceWidth_ChromiumImpl(__VA_ARGS__);
-  static int CalculateDeviceHeight(__VA_ARGS__, bool);
-  static int CalculateDeviceHeight_ChromiumImpl(__VA_ARGS__);
+  static int CalculateDeviceWidth(LocalFrame*, bool);
+  static int CalculateDeviceWidth_ChromiumImpl(LocalFrame*);
+
+  static int CalculateDeviceHeight(LocalFrame*, bool);
+  static int CalculateDeviceHeight_ChromiumImpl(LocalFrame*);
 
 ```
 
