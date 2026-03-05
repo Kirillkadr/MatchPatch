@@ -1,0 +1,19 @@
+### match
+```
+...
+ # ifndef ... 
+ namespace blink { ... 
+ class USBDevice : public ScriptWrappable,
+                  public ExecutionContextLifecycleObserver { ... 
+String productName() const { return Info().product_name; }  >>> 
+ String serialNumber() const { return Info().serial_number; }  <<< ... 
+USBConfiguration* configuration() const;
+ ... } ...  } ...  
+```
+### patch
+```
+  String serialNumber() const; 
+  String serialNumber_ChromiumImpl() const { return Info().serial_number; }
+
+```
+

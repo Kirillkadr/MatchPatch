@@ -21,7 +21,7 @@
 // `SerializeValue` function leverages the existing ValueMirror machinery used
 // by the Inspector Protocol.
 
-namespace v8::page_graph {
+namespace page_graph {
 
 namespace {
 

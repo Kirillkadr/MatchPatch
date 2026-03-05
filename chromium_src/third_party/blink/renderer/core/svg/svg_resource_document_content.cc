@@ -10,11 +10,11 @@
 #include "third_party/blink/renderer/core/svg/graphics/svg_image_chrome_client.h"
 
 #if BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH)
-#define InvalidateContainer(...)                  \
-  InvalidateContainer_Unused();                   \
-  DOMNodeId InitiatorDomNodeId() const override { \
-    return content_->initiator_dom_node_id();     \
-  }                                               \
+#define InvalidateContainer(...)
+  InvalidateContainer_Unused();
+  DOMNodeId InitiatorDomNodeId() const override {
+    return content_->initiator_dom_node_id();
+  }
   void InvalidateContainer(__VA_ARGS__)
 #endif  // BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH)
 
