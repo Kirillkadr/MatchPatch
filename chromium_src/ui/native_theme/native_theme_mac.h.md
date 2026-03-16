@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace ui { ... 
@@ -14,7 +15,8 @@ void PaintMenuItemBackground(
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
   GetSystemButtonPressedColor_ChromiumImpl(SkColor base_color) const override; \
   virtual SkColor GetSystemButtonPressedColor
 

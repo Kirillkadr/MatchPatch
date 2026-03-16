@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace views { ... 
@@ -12,13 +13,15 @@ gfx::Insets GetDialogInsetsForContentType(DialogContentType leading,
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   virtual int GetCornerRadiusMetric(ShapeContextTokensOverride token) const;
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace views { ... 
@@ -31,7 +34,8 @@ private:
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 // An enum type to provide an override path for kOmniboxExpandedRadius to be
 // mapped to ShapeSysTokens::kMedium. This is used by
 // `RoundedOmniboxResultsFrame`.

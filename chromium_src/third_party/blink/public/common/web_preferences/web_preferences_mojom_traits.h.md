@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 #include "third_party/blink/public/mojom/webpreferences/web_preferences.mojom.h"
@@ -841,14 +842,16 @@ struct BLINK_COMMON_EXPORT StructTraits<blink::mojom::WebPreferencesDataView,
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "third_party/blink/public/common/web_preferences/web_preferences.h"
 #include "third_party/blink/public/mojom/webpreferences/web_preferences.mojom.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace mojo { ... 
@@ -862,7 +865,8 @@ static bool Read(blink::mojom::WebPreferencesDataView r,
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 template <>
 struct BLINK_COMMON_EXPORT StructTraits<blink::mojom::WebPreferencesDataView,
                                         blink::web_pref::WebPreferences>

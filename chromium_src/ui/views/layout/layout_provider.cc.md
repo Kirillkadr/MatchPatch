@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include "ui/views/layout/layout_provider.h"
 
@@ -11,13 +12,15 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "ui/views/layout/layout_provider.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace views { ... 
  int LayoutProvider::GetShadowElevationMetric(Emphasis emphasis) const { ... 
@@ -38,7 +41,8 @@ switch (emphasis) {
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 int LayoutProvider::GetCornerRadiusMetric(ShapeContextTokensOverride id) const {
   switch (id) {
     case ShapeContextTokensOverride::kOmniboxExpandedRadius:

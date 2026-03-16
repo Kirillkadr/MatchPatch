@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include <optional>
 
@@ -11,7 +12,8 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include <iostream>
 #include <string>
 
@@ -23,7 +25,8 @@
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
  std::string UnescapePercentEncodedUrl(std::string_view input) { ... 
@@ -33,7 +36,8 @@ return url::DecodeUrlEscapeSequences(result, url::DecodeUrlMode::kUtf8);
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 namespace net {
 namespace {
 constexpr char kOnionDomain[] = "onion";

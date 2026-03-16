@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  NET_EXPORT ProxyServer ProxyUriToProxyServer(std::string_view uri,
                                              ProxyServer::Scheme default_scheme,
@@ -7,7 +8,8 @@
  >>>  ...
 ```
 ### patch
-```
+```cpp
+
 NET_EXPORT std::string ProxyServerToProxyUri_ChromiumImpl(const ProxyServer& proxy_server); 
 
 ```

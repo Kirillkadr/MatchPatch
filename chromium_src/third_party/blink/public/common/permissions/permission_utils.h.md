@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace blink { ... 
@@ -10,7 +11,8 @@ NUM
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 
   BRAVE_ADS,
   BRAVE_TRACKERS,
@@ -29,7 +31,8 @@ NUM
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace blink { ... 
@@ -40,7 +43,8 @@ MIN_VALUE = MIDI_SYSEX
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
   BRAVE_MIN_VALUE = BRAVE_ADS
 // clang-format on
 

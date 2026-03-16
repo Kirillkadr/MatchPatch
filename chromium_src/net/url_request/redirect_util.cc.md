@@ -1,7 +1,26 @@
 ### match
-```
+```cpp
+
 ...
-// found in the LICENSE file.
+// Use of this source code is governed by a BSD-style license that can be
+ // found in the LICENSE file. 
+ >>> 
+#include "net/url_request/redirect_util.h"
+
+ ... 
+```
+### patch
+```cpp
+include "net/url_request/redirect_util.h"
+
+```
+
+### match
+```cpp
+
+...
+#include "net/url_request/redirect_util.h"
+
  #include "net/url_request/redirect_util.h"
  
  >>> 
@@ -10,15 +29,18 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include <algorithm>
 #include <optional>
+
 #include "net/url_request/url_request_job.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ...   >>> 
  void 
@@ -28,13 +50,15 @@ const GURL& original_url
  ... ) ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 void RedirectUtil::UpdateHttpRequest_ChromiumImpl(
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
  scoped_refptr<HttpResponseHeaders> RedirectUtil::SynthesizeRedirectHeaders(
@@ -48,7 +72,8 @@ return fake_headers;
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 void RedirectUtil::UpdateHttpRequest(
     const GURL& original_url,
     std::string_view original_method,

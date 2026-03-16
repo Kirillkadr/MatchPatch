@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace absl { ... 
@@ -12,7 +13,8 @@ using Base::operator!=;
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 / Make randen_engine available for direct usage, because
 // absl::BitGen/InsecureBitGen uses always-on process-bound salt for seeded
 // generators.

@@ -1,5 +1,5 @@
 ### match
-```
+```cpp
 ...
  namespace ui { ...   >>> 
  SkColor 
@@ -15,7 +15,8 @@ SkColor NativeThemeMac::GetSystemButtonPressedColor_ChromiumImpl(SkColor base_co
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace ui { ... 
  void NativeThemeMac::PaintMenuPopupBackground(
@@ -30,7 +31,8 @@ canvas->drawRoundRect(gfx::RectToSkRect(gfx::Rect(size)), radius, radius,
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 SkColor NativeThemeMac::GetSystemButtonPressedColor(SkColor base_color) const {
   return NativeTheme::GetSystemButtonPressedColor(base_color);
 }

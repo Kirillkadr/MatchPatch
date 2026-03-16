@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace gfx { ... 
@@ -9,7 +10,8 @@
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 // TODO(simonhong): Delete this file when nala color is available in ui layer.
 // TODO(simonhong): Remove kBraveBlurple300. It is used incorrectly.
 inline constexpr SkColor kBraveBlurple300 = SkColorSetRGB(0xA0, 0xA5, 0xEB);

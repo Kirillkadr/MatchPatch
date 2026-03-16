@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  namespace blink { ...   >>> 
  void 
@@ -11,13 +12,15 @@ const bool should_send
  ... ) ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 void EnabledClientHints::SetIsEnabled_ChromiumImpl(const WebClientHintsType type,
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace blink { ... 
  std::vector<WebClientHintsType> EnabledClientHints::GetEnabledHints() const { ... 
@@ -27,7 +30,8 @@ return hints;
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 void EnabledClientHints::SetIsEnabled(const WebClientHintsType type,
                                       const bool should_send) {
   bool type_is_enabled = false;

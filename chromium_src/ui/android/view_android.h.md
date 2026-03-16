@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace ui { ... 
@@ -10,7 +11,8 @@ bool OnTouchEvent(const MotionEventAndroid& event);
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   Unused() {
     return false;
   }
@@ -20,7 +22,8 @@ bool OnTouchEvent(const MotionEventAndroid& event);
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace ui { ... 
@@ -31,7 +34,8 @@ bool OnTouchEvent(const MotionEventAndroid& event);
  ... 
 ```
 ### patch
-```
+```cpp
+
 namespace speedreader {
 class SpeedreaderTabHelper;
 }

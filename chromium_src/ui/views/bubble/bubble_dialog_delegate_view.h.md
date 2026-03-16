@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include "ui/base/cocoa/bubble_closer.h"
 
@@ -8,7 +9,8 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 class BraveNewsBubbleView;
 class BraveHelpBubbleDelegateView;
 class SplitViewMenuBubble;
@@ -20,7 +22,8 @@ class SidebarAddItemBubbleDelegateView;
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace ambient_signin { ... 
@@ -29,7 +32,8 @@ class SidebarAddItemBubbleDelegateView;
  ... 
 ```
 ### patch
-```
+```cpp
+
 namespace playlist {
 class PlaylistBubbleView;
 }  // namespace playlist
@@ -37,7 +41,8 @@ class PlaylistBubbleView;
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace 
@@ -48,13 +53,15 @@ class AnchorTestBubbleDialogDelegateView
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 class BraveBubbleDialogDelegateView;
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  bool autosize = false 
@@ -65,7 +72,8 @@ static BddvPassKey CreatePassKey() { return BddvPassKey(); }
  ... 
 ```
 ### patch
-```
+```cpp
+
   friend class ::BraveNewsBubbleView;
   friend class ::BraveHelpBubbleDelegateView;
   friend class ::WaybackMachineBubbleView;

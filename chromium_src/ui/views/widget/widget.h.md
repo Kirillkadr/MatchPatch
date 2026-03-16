@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 #include <utility>
@@ -12,13 +13,15 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "build/build_config.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace views { ... 
@@ -29,7 +32,8 @@ void UnlockPaintAsActive();
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
   SetWindowTitleVisibility(bool visible);
   void ResetWindowControlsPosition();
   void UpdateWindowTitleColor(SkColor color);

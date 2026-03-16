@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include "src/utils/ostreams.h"
 >>>
@@ -7,7 +8,8 @@
 
 ### patch
 
-```
+```cpp
+
 #if BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH_WEBAPI_PROBES)
 #include "src/builtins/builtins-inl.h"
 #include "src/builtins/builtins-utils-inl.h"
@@ -15,7 +17,8 @@
 #endif  // BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH_WEBAPI_PROBES)
 ```
 ### match
-```
+```cpp
+
 ...
 namespace v8 {
 namespace internal {
@@ -29,7 +32,8 @@ namespace internal {
 
 ### patch
 
-```
+```cpp
+
 #if BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH_WEBAPI_PROBES)
 static std::string ToPageGraphArg(Isolate* isolate, Handle<Object> object) {
 #ifdef OBJECT_PRINT  // Enabled with v8_enable_object_print=true gn arg.

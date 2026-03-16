@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include <tuple>
   >>> 
@@ -76,7 +77,8 @@ CookieOptions CookieOptions::MakeAllInclusive() {
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include <optional>
 #include "base/check.h"
 #include "net/cookies/cookie_access_delegate.h"
@@ -86,7 +88,8 @@ CookieOptions CookieOptions::MakeAllInclusive() {
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
  CookieOptions CookieOptions::MakeAllInclusive() { ... 
@@ -96,7 +99,8 @@ return options;
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 #undef CookieOptions
 CookieOptions::CookieOptions() = default;
 CookieOptions::CookieOptions(const CookieOptions&) = default;

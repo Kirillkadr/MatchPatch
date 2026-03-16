@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  namespace blink { ... 
  namespace features { ... 
@@ -11,7 +12,8 @@ base::FEATURE_DISABLED_BY_DEFAULT
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 OVERRIDE_FEATURE_DEFAULT_STATES({{
     {kAIProofreadingAPI, base::FEATURE_DISABLED_BY_DEFAULT},
     {kAIPromptAPI, base::FEATURE_DISABLED_BY_DEFAULT},

@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include "net/cookies/cookie_monster.h"
 
@@ -260,13 +261,15 @@ void CookieMonsterChangeDispatcher::UnlinkSubscription(
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "net/cookies/cookie_monster.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
  CookieMonsterChangeDispatcher::CookieMonsterChangeDispatcher ( ...   >>> 
@@ -274,7 +277,8 @@ void CookieMonsterChangeDispatcher::UnlinkSubscription(
  )  <<< ... } ...  
 ```
 ### patch
-```
+```cpp
+
     const ChromiumCookieMonster* cookie_monster)
 
 ```

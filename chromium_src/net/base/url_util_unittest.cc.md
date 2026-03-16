@@ -1,5 +1,7 @@
 ### match
-``` ... 
+```cpp
+ 
+... 
 for (const auto& host : test_cases) {
     EXPECT_EQ(host.expected_output, IsGoogleHostWithAlpnH3(host.host));
   }
@@ -8,7 +10,8 @@ for (const auto& host : test_cases) {
  ... 
 ```
 ### patch
-```
+```cpp
+
 TEST(UrlUtilTest, IsOnionOrigin) {
   EXPECT_TRUE(IsOnion(url::Origin::Create(GURL("https://foo.onion/"))));
   EXPECT_TRUE(IsOnion(url::Origin::Create(GURL("https://foo.onion:20000/"))));

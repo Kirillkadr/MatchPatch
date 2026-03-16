@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 // Use of this source code is governed by a BSD-style license that can be
  // found in the LICENSE file. 
@@ -10,13 +11,15 @@
 
 ```
 ### patch
-```
+```cpp
+
 #include "ui/webui/webui_util.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
 #include "ui/webui/webui_util.h"
 
@@ -26,14 +29,16 @@
 #include <string>
 ```
 ### patch
-```
+```cpp
+
   #include "base/no_destructor.h"
 #include "base/strings/strcat.h"
 #include "content/public/common/url_constants.h"
 
 ```
 ### match
-```
+```cpp
+
 ...
 >>>
  namespace 
@@ -99,7 +104,8 @@ void SetJSModuleDefaults(content::WebUIDataSource* source) {
  ... } ...   
 ```
 ### patch
-```
+```cpp
+
 namespace {
 // A chrome-untrusted data source's name starts with chrome-untrusted://.
 bool IsChromeUntrustedDataSource(content::WebUIDataSource* source) {

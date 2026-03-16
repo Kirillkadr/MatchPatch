@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  namespace blink { ...   >>> 
  static 
@@ -12,13 +13,15 @@
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 static constexpr double kPresetBrowserZoomFactorsArray_ChromiumImpl[] = {
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace blink { ... 
 static constexpr double kPresetBrowserZoomFactorsArray_ChromiumImpl[] = {
@@ -45,14 +48,16 @@ const double kMaximumBrowserZoomFactor = 6.0;
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 const base::span<const double> kPresetBrowserZoomFactors_ChromiumImpl(
     kPresetBrowserZoomFactorsArray_ChromiumImpl);
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace blink { ... 
  bool ZoomValuesEqual(double value_a, double value_b) { ... 
@@ -62,7 +67,8 @@ return (std::fabs(value_a - value_b) <= kPageZoomEpsilon);
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 static constexpr double kPresetBrowserZoomFactorsArray[] = {
     0.25,    1 / 3.0, 0.5, 2 / 3.0, 0.75, 0.8, 0.9, 1.0, 1.1, 1.25,
     4 / 3.0, 7 / 5.0, 1.5, 1.75,    2.0,  2.5, 3.0, 4.0, 5.0};

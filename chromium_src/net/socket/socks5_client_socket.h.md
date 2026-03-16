@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 #include <stddef.h>
@@ -12,14 +13,16 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include <memory>
 #include <string>
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 #include <memory>
@@ -32,13 +35,15 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "net/socket/transport_connect_job.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace net { ... 
@@ -50,7 +55,8 @@ NetworkTrafficAnnotationTag traffic_annotation_;
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 class NET_EXPORT_PRIVATE SOCKS5ClientSocketAuth : public SOCKS5ClientSocket {
  public:
   SOCKS5ClientSocketAuth(std::unique_ptr<StreamSocket> transport_socket,

@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  namespace sandbox::policy::features { ... 
  bool IsNetworkSandboxEnabled() { ... 
@@ -9,7 +10,8 @@
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 BASE_FEATURE(kModuleFileNamePatch,
              base::FEATURE_DISABLED_BY_DEFAULT);
 

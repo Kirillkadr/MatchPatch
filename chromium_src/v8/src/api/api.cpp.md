@@ -1,23 +1,25 @@
 ### match
-```
+```cpp
 >>>
 ...
 ```
 
 ### patch
 
-```
+```cpp
+
 #include "brave/v8/include/v8-isolate-page-graph-utils.h"
 ```
 ### match
-```
+```cpp
+
 ...
 >>>
 ```
 
 ### patch
 
-```
+```cpp
 #if BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH)
 
 namespace v8::page_graph {

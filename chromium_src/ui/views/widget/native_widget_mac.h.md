@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 #include <memory>
@@ -12,14 +13,16 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include <optional>
 #include "ui/views/widget/native_widget_private.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace views { ... 
@@ -33,7 +36,8 @@ void SetWindowIcons(const gfx::ImageSkia& window_icon,
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
   void SetWindowTitleVisibility(bool visible);                   \
   bool has_overridden_window_title_visibility() const {     \
     return overridden_window_title_visibility_.has_value(); \

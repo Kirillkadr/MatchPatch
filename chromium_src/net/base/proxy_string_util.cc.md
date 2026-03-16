@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 // Use of this source code is governed by a BSD-style license that can be
  // found in the LICENSE file. 
@@ -9,13 +10,15 @@
  ...
 ```
 ### patch
-```
+```cpp
+
 #include "net/base/proxy_string_util.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
 #include "net/base/proxy_string_util.h"
 
@@ -27,7 +30,8 @@
  ...
 ```
 ### patch
-```
+```cpp
+
 #include <string_view>
 
 #include "base/strings/strcat.h"
@@ -36,33 +40,38 @@
 ```
 
 ### match
-```
+```cpp
+
 ...   >>> 
  std::string 
  ProxyServerToPacResultElement(const ProxyServer& proxy_server) 
  {  <<< ...
 ```
 ### patch
-```
+```cpp
+
 std::string ProxyServerToPacResultElement_ChromiumImpl(const ProxyServer& proxy_server) {
 
 ```
 
 ### match
-```
+```cpp
+
 ...   >>> 
  std::string 
  ProxyServerToProxyUri(const ProxyServer& proxy_server) 
  {  <<< ...
 ```
 ### patch
-```
+```cpp
+
 std::string ProxyServerToProxyUri_ChromiumImpl(const ProxyServer& proxy_server) {
 
 ```
 
 ### match
-```
+```cpp
+
 ... >>> 
  url::ParseAuthority(host_and_port, url::Component(0, host_and_port.size()),
                       url::ParserMode::kSpecialURL, &username_component,
@@ -70,7 +79,8 @@ std::string ProxyServerToProxyUri_ChromiumImpl(const ProxyServer& proxy_server) 
                       &port_component);  <<< ...
 ```
 ### patch
-```
+```cpp
+
   url::ParseAuthority(host_and_port.data(),
                  url::Component(0, host_and_port.size()), PARSER_MODE,
                  &username_component, &password_component,
@@ -85,7 +95,8 @@ std::string ProxyServerToProxyUri_ChromiumImpl(const ProxyServer& proxy_server) 
 ```
 
 ### match
-```
+```cpp
+
 ... { ...
 // !BUILDFLAG(ENABLE_BRACKETED_PROXY_URIS)
  } 
@@ -93,7 +104,8 @@ std::string ProxyServerToProxyUri_ChromiumImpl(const ProxyServer& proxy_server) 
  ... } ...
 ```
 ### patch
-```
+```cpp
+
 namespace {
 
 // Based on FromSchemeHostAndPort() from proxy_server.cc, but to consider auth

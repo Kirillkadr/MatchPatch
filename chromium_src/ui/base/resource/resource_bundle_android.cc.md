@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  namespace ui { ... 
  namespace { ... 
@@ -15,14 +16,16 @@ return true;
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 int g_brave_resources_pack_fd = -1;
 base::MemoryMappedFile::Region g_brave_resources_pack_region;
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace ui { ... 
  std::vector<ResourceBundle::FdAndRegion> SwapAndroidGlobalsForTesting(
@@ -33,7 +36,8 @@ return std::exchange(GetLocalePaksGlobal(), new_locale_packs);
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 void BraveLoadMainAndroidPackFile(const char* path_within_apk,
                                   const base::FilePath& disk_file_path) {
   if (LoadFromApkOrFile(path_within_apk, &disk_file_path,

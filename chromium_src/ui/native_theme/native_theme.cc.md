@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 // found in the LICENSE file.
  #include "ui/native_theme/native_theme.h"
@@ -10,14 +11,16 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "ui/gfx/color_palette.h"
 #include "ui/gfx/color_utils.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace ui { ...   >>> 
  SkColor 
@@ -27,13 +30,15 @@ return base_color;
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 SkColor NativeTheme::GetSystemButtonPressedColor_ChromiumImpl(SkColor base_color) const {
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace ui { ... 
  NativeTheme::PreferredContrast NativeTheme::CalculatePreferredContrast() const { ... 
@@ -44,7 +49,8 @@ return IsForcedHighContrast() ? PreferredContrast::kMore
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 SkColor NativeTheme::GetSystemButtonPressedColor(SkColor base_color) const {
   bool is_dark = (preferred_color_scheme() == PreferredColorScheme::kDark);
   return color_utils::GetResultingPaintColor(

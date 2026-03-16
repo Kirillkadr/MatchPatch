@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace ui { ... 
@@ -10,7 +11,8 @@
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   virtual SkColor GetSystemButtonPressedColor_ChromiumImpl(SkColor base_color) const;
   virtual SkColor GetSystemButtonPressedColor
 

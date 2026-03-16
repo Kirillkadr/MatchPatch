@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include "url/origin.h"
 
@@ -12,13 +13,15 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "net/http/transport_security_state.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  if (TransportSecurityState* hsts =
           request->context()->transport_security_state()) { ...   >>> 
@@ -35,13 +38,15 @@ request->net_log()
  ... ) ...  } ...  
 ```
 ### patch
-```
+```cpp
+
     upgrade_decision = hsts->GetSSLUpgradeDecision(request->isolation_info().network_anonymization_key(),url.GetHost(),/*is_top_level_nav=*/request->isolation_info().IsOutermostMainFrameRequest(),
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
  void URLRequestHttpJob::ProcessStrictTransportSecurityHeader() { ... 
@@ -50,13 +55,15 @@ request->net_log()
  security_state->AddHSTSHeader(request_info_.url.GetHost(), *value);  <<< ... } ...  } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
     security_state->AddHSTSHeader(request_->isolation_info(), request_info_.url.GetHost(), *value);
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
  void URLRequestHttpJob::OnStartCompleted(int result) { ... 
@@ -68,13 +75,15 @@ result != ERR_CERT_KNOWN_INTERCEPTION_BLOCKED
  ... ) ...  } ...  } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
         state->ShouldSSLErrorsBeFatal(request_->isolation_info().network_anonymization_key(), request_info_.url.GetHost()) &&
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
  bool URLRequestHttpJob::ShouldRecordPartitionedCookieUsage() const { ... 
@@ -84,7 +93,8 @@ return request_->cookie_partition_key().has_value();
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 namespace {
 // This function acts as a trampoline between
 // `URLRequestHttpJob::CreateCookieOptions` and the `CreateCookieOptions`

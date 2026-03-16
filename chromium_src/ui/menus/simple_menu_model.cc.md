@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  namespace ui { ... 
  void SimpleMenuModel::ValidateItem(const Item& item) { ... 
@@ -9,7 +10,8 @@
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 void SimpleMenuModel::AddButtonItemAt(int command_id,
                                       ButtonMenuItemModel* model,
                                       size_t index) {

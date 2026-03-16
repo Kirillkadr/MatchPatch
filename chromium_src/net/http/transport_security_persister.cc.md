@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
  namespace { ... 
@@ -13,7 +14,8 @@ std::string HashedDomainToExternalString(
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 // Use upstream version of TransportSerurityState to reference
 // TransportSecurityState::Delegate without build issues.
 #define TransportSecurityState TransportSecurityState_ChromiumImpl
@@ -21,7 +23,8 @@ std::string HashedDomainToExternalString(
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
 void TransportSecurityPersister::CompleteLoad(const std::string& state) {
@@ -38,7 +41,8 @@ void TransportSecurityPersister::CompleteLoad(const std::string& state) {
  ... 
 ```
 ### patch
-```
+```cpp
+
 #undef TransportSecurityState
 
 ```

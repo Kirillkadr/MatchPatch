@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 // Use of this source code is governed by a BSD-style license that can be
  // found in the LICENSE file. 
@@ -9,13 +10,15 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "net/cookies/cookie_access_delegate.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
 #include "net/cookies/cookie_access_delegate.h"
 
@@ -26,7 +29,8 @@ class GURL
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include <optional>
 
 #include "base/notreached.h"
@@ -34,7 +38,8 @@ class GURL
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
  bool CookieAccessDelegate::ShouldTreatUrlAsTrustworthy(const GURL& url) const { ... 
@@ -44,7 +49,8 @@ return false;
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 bool CookieAccessDelegate::NotUsed() const {
   return false;
 }

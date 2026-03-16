@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include "storage/browser/blob/blob_url_store_impl.h"
 
@@ -11,14 +12,16 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "storage/browser/blob/blob_url_store_impl.h"
 #include "storage/browser/blob/blob_url_utils.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace storage { ...   >>> 
  BlobURLStoreImpl::BlobURLStoreImpl 
@@ -27,13 +30,15 @@ const blink::StorageKey& storage_key
  ... ) ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 BlobURLStoreImpl_ChromiumImpl::BlobURLStoreImpl_ChromiumImpl(
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace storage { ...   >>> 
  BlobURLStoreImpl::~BlobURLStoreImpl() 
@@ -45,13 +50,15 @@ if (registry_) {
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 BlobURLStoreImpl_ChromiumImpl::~BlobURLStoreImpl_ChromiumImpl() {
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace storage { ...   >>> 
  void 
@@ -61,13 +68,15 @@ mojo::PendingRemote<blink::mojom::Blob> blob
  ... ) ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 void BlobURLStoreImpl_ChromiumImpl::Register(
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace storage { ...   >>> 
  void 
@@ -78,13 +87,15 @@ if (!BlobUrlIsValid(url, "Revoke"))
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 void BlobURLStoreImpl_ChromiumImpl::Revoke(const GURL& url) {
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace storage { ...   >>> 
  bool 
@@ -94,13 +105,15 @@ bool has_storage_access_handle
  ... ) ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 bool BlobURLStoreImpl_ChromiumImpl::ShouldPartitionBlobUrlAccess(
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace storage { ...   >>> 
  void 
@@ -110,13 +123,15 @@ const GURL& url
  ... ) ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 void BlobURLStoreImpl_ChromiumImpl::ResolveAsURLLoaderFactory(
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace storage { ...   >>> 
  void 
@@ -126,13 +141,15 @@ const GURL& url
  ... ) ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 void BlobURLStoreImpl_ChromiumImpl::ResolveAsBlobURLToken(
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace storage { ...   >>> 
  bool 
@@ -144,13 +161,15 @@ const char* method
  ... ) ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 bool BlobURLStoreImpl_ChromiumImpl::BlobUrlIsValid(const GURL& url,
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace storage { ... 
  bool BlobURLStoreImpl_ChromiumImpl::BlobUrlIsValid(const GURL& url,
@@ -161,7 +180,8 @@ return true;
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 void BlobURLStoreImpl::ResolveAsURLLoaderFactory(
     const GURL& url,
     mojo::PendingReceiver<network::mojom::URLLoaderFactory> receiver) {

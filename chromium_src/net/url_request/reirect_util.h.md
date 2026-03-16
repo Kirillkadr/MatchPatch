@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace net { ... 
@@ -18,7 +19,8 @@ NET_EXPORT static void UpdateHttpRequest(
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   NET_EXPORT static void UpdateHttpRequest_ChromiumImpl(
       const GURL& original_url, std::string_view original_method,
       const RedirectInfo& redirect_info,

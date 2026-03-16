@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include "net/base/lookup_string_in_fixed_set.h"
 
@@ -11,7 +12,8 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "net/base/lookup_string_in_fixed_set.h"
 #include <string_view>
 
@@ -20,7 +22,8 @@
 ```
 
 ### match
-```
+```cpp
+
 ...
 >>>
  std::optional<DomainRuleTags> 
@@ -30,13 +33,15 @@ base::span<const uint8_t> graph
  ... ) ...  
 ```
 ### patch
-```
+```cpp
+
 std::optional<DomainRuleTags> LookupSuffixInReversedSet_ChromiumImpl(
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
  std::optional<DomainRuleTags> LookupSuffixInReversedSet_ChromiumImpl(
@@ -50,7 +55,8 @@ return result;
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 // Chromium pulls upstream public suffix list in effective_tld_names.dat and
 // generate effective_tld_names.gperf from it. The list is processed by
 // net/tools/dafsa/make_dafsa.py which will generate a byte array in

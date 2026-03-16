@@ -1,7 +1,8 @@
 
 
 ### match
-```
+```cpp
+
 ...
 #include "ui/views/style/typography_provider.h"
 
@@ -14,7 +15,8 @@ namespace views
 
 ### patch
 
-```
+```cpp
+
 namespace gfx {
 
 gfx::Insets BraveAdjustVisualBorderForFont(const gfx::FontList& badge_font,
@@ -27,7 +29,8 @@ gfx::Insets BraveAdjustVisualBorderForFont(const gfx::FontList& badge_font,
 
 
 ### match
-```
+```cpp
+
 ...
  namespace views { ... 
  namespace { ... 
@@ -37,11 +40,13 @@ gfx::Insets BraveAdjustVisualBorderForFont(const gfx::FontList& badge_font,
 
 ### patch
 
-```
+```cpp
+
 badge_rect.Inset(-gfx::BraveAdjustVisualBorderForFont(
 ```
 ### match
-```
+```cpp
+
 ...
  namespace views { ... 
  void BadgePainter::PaintBadge(gfx::Canvas* canvas,
@@ -56,7 +61,8 @@ badge_rect.Inset(-gfx::BraveAdjustVisualBorderForFont(
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   flags.setAntiAlias(true);
 
 ```

@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 >>>
 namespace views { ...
@@ -7,16 +8,19 @@ namespace views { ...
 ...
 ```
 ### patch
-```
+```cpp
+
 #define MdTextButton MdTextButtonBase
 ```
 ### match
-```
+```cpp
+
 ...
 >>>
 ```
 ### patch
-```
+```cpp
+
 namespace {
 
 SkColor AddOpacity(SkColor color, float opacity) {
@@ -99,7 +103,8 @@ static constexpr auto kButtonThemes =
 }  // namespace
 ```
 ### match
-```
+```cpp
+
 ...
 namespace views { ...
 >>>
@@ -107,7 +112,8 @@ namespace views { ...
 ...
 ```
 ### patch
-```
+```cpp
+
 MdTextButton::MdTextButton(
     PressedCallback callback,
     std::u16string_view text,

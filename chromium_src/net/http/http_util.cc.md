@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 // http://lxr.mozilla.org/mozilla/source/netwerk/base/src/nsURLHelper.cpp#834
  #include "net/http/http_util.h"
@@ -10,15 +11,16 @@
  ...
 ```
 ### patch
-```
-#include "net/http/http_util.h"
+```cpp
+include "net/http/http_util.h"
 
 #include "base/strings/string_util.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ...   >>> 
  bool 
@@ -28,18 +30,20 @@
  ... } ...  } ...
 ```
 ### patch
-```
+```cpp
+
 bool HttpUtil::IsNonCoalescingHeader_ChromiumImpl(std::string_view name) {
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  >>>
 ```
 ### patch
-```
+```cpp
 // static
 bool HttpUtil::IsNonCoalescingHeader(std::string_view name) {
   if (base::EqualsCaseInsensitiveASCII(name, "onion-location")) {

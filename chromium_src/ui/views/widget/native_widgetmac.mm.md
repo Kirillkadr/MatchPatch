@@ -1,15 +1,18 @@
 ### match
-```
+```cpp
+
 ...
 >>>
 ```
 ### patch
-```
+```cpp
+
 #include "base/check.h"
 ```
 
 ### match
-```
+```cpp
+
 ...
 namespace views {
 ...
@@ -17,7 +20,8 @@ namespace views {
 }
 ```
 ### patch
-```
+```cpp
+
  void NativeWidgetMac::SetWindowTitleVisibility(bool visible) {
   if (overridden_window_title_visibility_.has_value() &&
       visible == *overridden_window_title_visibility_) {

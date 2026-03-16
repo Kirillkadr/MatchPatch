@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include <optional>
 
@@ -11,13 +12,15 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "net/device_bound_sessions/session_binding_utils.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net::device_bound_sessions { ... 
  namespace { ... 
@@ -29,7 +32,8 @@
  ... } ...  } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
     case crypto::SignatureVerifier::ECDSA_SHA384:
   return "SHA384";     \
 

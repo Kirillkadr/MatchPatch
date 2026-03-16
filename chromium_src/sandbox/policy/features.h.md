@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace sandbox::policy::features { ... 
@@ -9,7 +10,8 @@
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 // Enables patching of executable's name from brave.exe to chrome.exe in
 // sandboxed processes.
 SANDBOX_POLICY_EXPORT BASE_DECLARE_FEATURE(kModuleFileNamePatch);

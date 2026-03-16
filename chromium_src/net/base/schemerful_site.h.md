@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace net { ... 
@@ -11,7 +12,8 @@
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   friend class HSTSPartitionHashHelper;
 
 ```
