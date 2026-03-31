@@ -1,21 +1,25 @@
 ### match
-```
+```cpp
+
 ...
 >>>
 ```
 ### patch
-```
+```cpp
+
 #include "brave/components/brave_page_graph/common/buildflags.h"
 ```
 
 ### match
-```
+```cpp
+
 ...
 #include "brave/components/brave_page_graph/common/buildflags.h"
 >>>
 ```
 ### patch
-```
+```cpp
+
 #if BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH)
 
 #include "brave/v8/include/v8-isolate-page-graph-utils.h"
@@ -24,7 +28,8 @@
 ```
 
 ### match
-```
+```cpp
+
 ...
 namespace v8_inspector {
 ...
@@ -33,7 +38,8 @@ namespace v8_inspector {
 ...
 ```
 ### patch
-```
+```cpp
+
 #if BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH)
 namespace page_graph {
 

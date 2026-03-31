@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  namespace features { ... 
  #if !BUILDFLAG(IS_ANDROID ) ...   >>> 
@@ -11,13 +12,15 @@ return base::FeatureList::IsEnabled(
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 bool IsScreenAIMainContentExtractionEnabled_ChromiumImpl() {
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace features { ... 
  #if !BUILDFLAG(IS_ANDROID ) ...   >>> 
@@ -28,13 +31,15 @@ return base::FeatureList::IsEnabled(ax::mojom::features::kScreenAIOCREnabled);
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 bool IsScreenAIOCREnabled_ChromiumImpl() {
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace features { ... 
 bool IsWasmTtsEngineAutoInstallDisabled() {
@@ -47,7 +52,8 @@ bool IsWasmTtsEngineAutoInstallDisabled() {
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 bool IsScreenAIMainContentExtractionEnabled() {
   return false;
 }

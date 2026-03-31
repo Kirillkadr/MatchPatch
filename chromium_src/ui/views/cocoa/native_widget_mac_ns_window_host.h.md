@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace views { ... 
@@ -9,7 +10,8 @@
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
   void SetWindowTitleVisibility(bool visible); 
   void OnWidgetInitDone
 

@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  namespace blink { ... 
  namespace web_pref { ... 
@@ -9,13 +10,15 @@
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 #define WebPreferences WebPreferences_ChromiumImpl
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace blink { ... 
  namespace web_pref { ... 
@@ -26,7 +29,8 @@ WebPreferences& WebPreferences::operator=(const WebPreferences& other) =
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 WebPreferences::WebPreferences(const WebPreferences& other) = default;
 WebPreferences::WebPreferences(WebPreferences&& other) = default;
 WebPreferences::~WebPreferences() = default;

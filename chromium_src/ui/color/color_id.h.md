@@ -1,10 +1,12 @@
 ### match
-```
+```cpp
+
 ...
 >>>
 ```
 ### patch
-```
+```cpp
+
 BRAVE_MATERIAL_MISSING_COLOR_IDS 
   E_CPONLY(kColorRefNeutral5)            
   E_CPONLY(kColorRefNeutral35)           

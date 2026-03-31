@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace views { ... 
@@ -11,7 +12,8 @@ return static_cast<bool>(params_.desired_bounds_delegate);
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   gfx::Point get_desired_position() {                               
     return desired_position_delegate_.Run();                        
   }                                                                 
@@ -34,7 +36,8 @@ return static_cast<bool>(params_.desired_bounds_delegate);
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 FRIEND_TEST_ALL_PREFIXES(test::WidgetOwnsNativeWidgetTest,
@@ -45,7 +48,8 @@ static WdvPassKey CreatePassKey() { return WdvPassKey(); }
  ... 
 ```
 ### patch
-```
+```cpp
+
   friend class ::brave_ads::NotificationAdPopup;     
   friend class ::brave_tooltips::BraveTooltipPopup;
   friend class ::MenuButtonDelegate;
@@ -54,7 +58,8 @@ static WdvPassKey CreatePassKey() { return WdvPassKey(); }
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  DEFINE_VIEW_BUILDER(VIEWS_EXPORT, WidgetDelegateView) 
@@ -62,7 +67,8 @@ static WdvPassKey CreatePassKey() { return WdvPassKey(); }
  ... 
 ```
 ### patch
-```
+```cpp
+
 namespace brave_ads {
 class NotificationAdPopup;
 }  // namespace brave_ads

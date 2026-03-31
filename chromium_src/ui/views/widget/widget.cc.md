@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include "ui/ozone/public/ozone_platform.h"
 
@@ -8,7 +9,8 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #if BUILDFLAG(IS_MAC)
 #include "ui/views/widget/native_widget_mac.h"
 #endif
@@ -17,7 +19,8 @@
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace views { ... 
  #if BUILDFLAG(IS_MAC ) ... 
@@ -30,7 +33,8 @@ if (native_widget_) {
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 namespace views {
 
 void Widget::SetWindowTitleVisibility(bool visible) {

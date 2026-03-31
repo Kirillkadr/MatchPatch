@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include <list>
 
@@ -11,13 +12,15 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "base/stl_util.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  
  namespace net { ... 
@@ -39,7 +42,8 @@ bool URLRequestTestJob::ProcessOnePendingMessage() {
  ... 
 ```
 ### patch
-```
+```cpp
+
 namespace base {
 template <class T, class Allocator, class Predicate>
 size_t EraseIf(std::list<T, Allocator>& container, Predicate pred);  // NOLINT

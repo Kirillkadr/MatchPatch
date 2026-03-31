@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  
  # ifndef ... 
@@ -9,7 +10,8 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
   // Makes PreMainMessageLoopRun virtual so that we can override it in
 // BraveApplicationContextImpl
   void virtual PreMainMessageLoopRun();

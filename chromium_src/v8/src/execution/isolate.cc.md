@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 namespace v8 {
 namespace internal {
@@ -13,7 +14,8 @@ namespace internal {
 
 ### patch
 
-```
+```cpp
+
 #if BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH)
 namespace {
 

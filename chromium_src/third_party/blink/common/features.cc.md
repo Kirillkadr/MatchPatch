@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  namespace blink::features {
  ...
@@ -8,7 +9,8 @@
  ...
 ```
 ### patch
-```
+```cpp
+
 OVERRIDE_FEATURE_DEFAULT_STATES({{
     // Upgrade all mixed content
     {kMixedContentAutoupgrade, base::FEATURE_ENABLED_BY_DEFAULT},

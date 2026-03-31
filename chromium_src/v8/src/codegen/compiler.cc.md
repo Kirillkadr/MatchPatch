@@ -1,23 +1,26 @@
 ### match
-```
+```cpp
+
 >>>
 ...
 ```
 
 ### patch
 
-```
+```cpp
+
 #include "brave/components/brave_page_graph/common/buildflags.h"
 ```
 ### match
-```
+```cpp
+
 ...
 >>>
 ```
 
 ### patch
 
-```
+```cpp
 #define BRAVE_COMPILER_GET_FUNCTION_FROM_EVAL                   \
   IF_BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH, {                       \
     auto* page_graph_delegate = isolate->page_graph_delegate(); \

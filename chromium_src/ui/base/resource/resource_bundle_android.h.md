@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace ui { ... 
@@ -10,7 +11,8 @@
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 COMPONENT_EXPORT(UI_BASE)
 void BraveLoadMainAndroidPackFile(const char* path_within_apk,
                                   const base::FilePath& disk_file_path);

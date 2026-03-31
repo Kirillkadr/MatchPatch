@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace v8 { ... 
@@ -12,7 +13,8 @@ using InterruptEntry = std::pair<InterruptCallback, void*>;
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   #if BUILDFLAG(ENABLE_BRAVE_PAGE_GRAPH)
   public:                                                                     \
   void set_page_graph_delegate(                                              \

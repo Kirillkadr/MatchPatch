@@ -1,12 +1,14 @@
 ### match
-```
+```cpp
+
 ...
  EVENT_TYPE(PROXY_RESOLUTION_OVERRIDE_RULE_APPLIED) 
  >>> 
  ... 
 ```
 ### patch
-```
+```cpp
+
 
 // Intentionally no header guards (see the comment in the overridden .h file).
 // NOLINT(build/header_guard)

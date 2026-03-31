@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 >>>
  void 
@@ -11,13 +12,15 @@ const ColorProviderKey& key
  ... ) ...  
 ```
 ### patch
-```
+```cpp
+
 void AddCoreDefaultColorMixer_Chromium(ColorProvider* provider,
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace ui { ... 
  void AddCoreDefaultColorMixer_Chromium(ColorProvider* provider,
@@ -29,7 +32,8 @@ mixer[kColorTextSelectionForeground] =
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 void AddBraveCoreDefaultColorMixer(ColorProvider* provider,
                                    const ColorProviderKey& key) {
   ColorMixer& mixer = provider->AddMixer();

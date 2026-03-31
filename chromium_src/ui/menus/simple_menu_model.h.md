@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 // owned by the same owner of this SimpleMenuModel.  >>> 
@@ -10,7 +11,8 @@ void AddSubMenu(int command_id,
  ... 
 ```
 ### patch
-```
+```cpp
+
   void AddButtonItemAt(int command_id, ButtonMenuItemModel* model, size_t index);
 
 ```

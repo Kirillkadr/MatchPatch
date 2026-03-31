@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
  int ProofVerifierChromium::Job::DoVerifyCertComplete(int result) { ...   >>> 
@@ -7,7 +8,8 @@
  ;  <<< ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
       transport_security_state_->ShouldSSLErrorsBeFatal(proof_verifier_->network_anonymization_key_, hostname_);
 
 ```

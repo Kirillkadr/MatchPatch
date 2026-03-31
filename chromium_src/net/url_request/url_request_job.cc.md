@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include "net/url_request/url_request_job.h"
 
@@ -11,13 +12,15 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "base/strings/string_util.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  
  namespace net { ... 
@@ -36,14 +39,16 @@ GURL MaybeStripToOrigin(GURL url, bool should_strip_to_origin) {
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 // Strip referrer for cross-origin requests from a .onion hostname.
 // This also affects the Origin header outside of CORS requests.
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  
  namespace net { ... 
@@ -55,7 +60,8 @@ ReferrerPolicy policy
  ... ) ...  } ...  
 ```
 ### patch
-```
+```cpp
+
       ReferrerPolicy policy, const GURL& original_referrer,
       const GURL& destination, bool* same_origin_out_for_metrics) {
     if (base::EndsWith(original_referrer.host(), ".onion",

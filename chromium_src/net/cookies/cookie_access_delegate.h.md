@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  #define NET_COOKIES_COOKIE_ACCESS_DELEGATE_H_
@@ -10,13 +11,15 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include <optional>
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 #include <optional>
@@ -29,7 +32,8 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "base/types/optional_ref.h"
 #include "net/cookies/cookie_setting_override.h"
 #include "net/cookies/site_for_cookies.h"
@@ -39,7 +43,8 @@
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace net { ... 
@@ -51,7 +56,8 @@ virtual bool ShouldTreatUrlAsTrustworthy(const GURL& url) const;
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   virtual bool ShouldUseEphemeralStorage(
       const GURL& url, const net::SiteForCookies& site_for_cookies,
       base::optional_ref<const url::Origin> top_frame_origin) const;

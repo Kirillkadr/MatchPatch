@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 #include <string>
@@ -12,7 +13,8 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "base/feature_list.h"
 #include "base/metrics/field_trial_params.h"
 #include "brave/net/dns/secure_dns_endpoints.h"
@@ -21,7 +23,8 @@
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace net::features { ... 
@@ -32,7 +35,8 @@
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 NET_EXPORT BASE_DECLARE_FEATURE(kBraveEphemeralStorage);
 NET_EXPORT BASE_DECLARE_FEATURE(kBraveEphemeralStorageKeepAlive);
 NET_EXPORT extern const base::FeatureParam<int>

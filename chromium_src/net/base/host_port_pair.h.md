@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 #define NET_BASE_HOST_PORT_PAIR_H_
@@ -12,7 +13,8 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include <compare>
 #include <string>
 #include <string_view>
@@ -20,7 +22,8 @@
 ```
 
 ### match
-```
+```cpp
+
 ...
 >>>
  class NET_EXPORT 
@@ -31,13 +34,15 @@ public:
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 class NET_EXPORT HostPortPair_ChromiumImpl {
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace net { ... 
@@ -45,13 +50,15 @@ class NET_EXPORT HostPortPair_ChromiumImpl {
  HostPortPair();  <<< ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   HostPortPair_ChromiumImpl();
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace net { ... 
@@ -67,7 +74,8 @@ class NET_EXPORT HostPortPair_ChromiumImpl {
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   HostPortPair_ChromiumImpl(std::string_view in_host, uint16_t in_port);
   HostPortPair_ChromiumImpl(const char* in_host, uint16_t in_port);
   HostPortPair_ChromiumImpl(std::string&& in_host, uint16_t in_port);
@@ -75,7 +83,8 @@ class NET_EXPORT HostPortPair_ChromiumImpl {
 ```
 
 ### match
-```
+```cpp
+
 ...
 ;  >>> 
  // Creates a HostPortPair for the origin of |url|. 
@@ -88,7 +97,8 @@ const url::SchemeHostPort& scheme_host_port
  ... ) ...  
 ```
 ### patch
-```
+```cpp
+
   // Creates a HostPortPair_ChromiumImpl for the origin of |url|.
   static HostPortPair_ChromiumImpl FromURL(const GURL& url);
 
@@ -97,7 +107,8 @@ const url::SchemeHostPort& scheme_host_port
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace net { ... 
@@ -110,14 +121,16 @@ static HostPortPair_ChromiumImpl FromSchemeHostPort(
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   // Creates a HostPortPair_ChromiumImpl from an IPEndPoint.
   static HostPortPair_ChromiumImpl FromIPEndPoint(const IPEndPoint& ipe);
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace net { ... 
@@ -128,14 +141,16 @@ static HostPortPair_ChromiumImpl FromIPEndPoint(const IPEndPoint& ipe);  >>>
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 
   // Creates a HostPortPair_ChromiumImpl from a string formatted in same manner as
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace net { ... 
@@ -146,13 +161,15 @@ static HostPortPair_ChromiumImpl FromIPEndPoint(const IPEndPoint& ipe);  >>>
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   static HostPortPair_ChromiumImpl FromString(std::string_view str);
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace net { ... 
@@ -168,7 +185,8 @@ bool IsEmpty() const {
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   // Nullopt if `value` is malformed to be deserialized to HostPortPair_ChromiumImpl.
   static std::optional<HostPortPair_ChromiumImpl> FromValue(const base::Value& value);
 
@@ -178,7 +196,8 @@ bool IsEmpty() const {
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace net { ... 
@@ -189,13 +208,15 @@ void set_port(uint16_t in_port) { port_ = in_port; }  >>>
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   // ToString() will convert the HostPortPair_ChromiumImpl to "host:port".  If |host_| is an
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace net { ... 
@@ -207,7 +228,8 @@ std::string host_;
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 class NET_EXPORT HostPortPair : public HostPortPair_ChromiumImpl {
  public:
   HostPortPair();

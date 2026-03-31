@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include <string>
 
@@ -11,7 +12,8 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "base/containers/fixed_flat_map.h"
 #include "base/feature_list.h"
 #include "brave/net/dns/secure_dns_endpoints.h"
@@ -23,7 +25,8 @@
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
  namespace { ... 
@@ -35,7 +38,8 @@
  ;  <<< ... } ...  } ...  } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
           MaybeAddFallbackDohServer(GetDohUpgradeServersFromNameservers(config->nameservers)));
 
 ```

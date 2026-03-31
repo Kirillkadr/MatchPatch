@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include <utility>
 
@@ -11,7 +12,8 @@
  ...
 ```
 ### patch
-```
+```cpp
+
 #include <memory>
 #include <optional>
 #include "net/base/url_util.h"
@@ -20,7 +22,8 @@
 ```
 
 ### match
-```
+```cpp
+
 ...
 // notification of key load completion triggered by the first request for the
  // same eTLD+1. 
@@ -29,13 +32,15 @@ static const int kMinutesIn400Days = 60 * 24 * 400;
  ...
 ```
 ### patch
-```
+```cpp
+
 #define CookieMonster ChromiumCookieMonster
 
 ```
 
 ### match
-```
+```cpp
+
 ... 
 return std::ranges::any_of(partitioned_cookies_, [&](const auto& pair) {
     const auto& [other_key, cookie_map] = pair;
@@ -47,7 +52,8 @@ return std::ranges::any_of(partitioned_cookies_, [&](const auto& pair) {
  ...
 ```
 ### patch
-```
+```cpp
+
 #undef CookieMonster
 CookieMonster::CookieMonster(scoped_refptr<PersistentCookieStore> store,
                              NetLog* net_log,

@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  namespace ui { ...   >>> 
  void 
@@ -9,13 +10,15 @@ const bool dark_mode = key.color_mode == ColorProviderKey::ColorMode::kDark;
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 void AddUiColorMixer_Chromium(ColorProvider* provider, const ColorProviderKey& key) {
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace ui { ... 
  void AddUiColorMixer_Chromium(ColorProvider* provider, const ColorProviderKey& key) { ... 
@@ -27,7 +30,8 @@ CompleteDefaultWebNativeRendererColorIdsDefinition(
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 // TODO(simonhong): Use nala color if it's available from UI layer.
 void AddBraveUiColorMixer(ColorProvider* provider,
                           const ColorProviderKey& key) {

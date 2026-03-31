@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  
  # ifndef ... 
@@ -11,14 +12,16 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "build/build_config.h"
 #include "components/omnibox/browser/autocomplete_provider_client.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  
  # ifndef ... 
@@ -29,7 +32,8 @@ history::HistoryService* GetHistoryService() override;
  ... 
 ```
 ### patch
-```
+```cpp
+
   void OpenLeo(const std::u16string& query) override; 
   bool IsLeoProviderEnabled() override;
 

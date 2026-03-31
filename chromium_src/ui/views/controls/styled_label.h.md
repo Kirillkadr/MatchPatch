@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 #include "ui/views/style/typography.h"
@@ -13,13 +14,15 @@ namespace views {
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 class CustomStyledLabel;
 
 ```
 
 ### match
-```
+```cpp
+
 ...
 >>>
  std::unique_ptr<Label> 
@@ -29,7 +32,8 @@ const std::u16string& text
  ... ) ...  
 ```
 ### patch
-```
+```cpp
+
 
   friend class ::CustomStyledLabel;                                        \
   virtual std::unique_ptr<views::Label> CreateLabel(

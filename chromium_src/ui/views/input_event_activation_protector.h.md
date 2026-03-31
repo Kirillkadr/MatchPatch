@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  #define UI_VIEWS_INPUT_EVENT_ACTIVATION_PROTECTOR_H_
@@ -10,13 +11,15 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "ui/views/windows_stationarity_monitor.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace views { ... 
@@ -28,7 +31,8 @@
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   void OnWindowStationaryStateChanged_ChromiumImpl(__VA_ARGS__);
   void IgnoreNextWindowStationaryStateChanged();
 

@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 >>>
  bool 
@@ -11,13 +12,15 @@ Pinsets* pinsets
  ... ) ...  
 ```
 ### patch
-```
+```cpp
+
 bool ParseCertificatesFile_ChromiumImpl(std::string_view certs_input,
 
 ```
 
 ### match
-```
+```cpp
+
 ...
 >>>
  bool 
@@ -29,13 +32,15 @@ std::string_view pins_json
  ... ) ...  
 ```
 ### patch
-```
+```cpp
+
 bool ParseJSON_ChromiumImpl(std::string_view hsts_json,
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net::transport_security_state { ... 
  bool ParseJSON_ChromiumImpl(std::string_view hsts_json,
@@ -48,7 +53,8 @@ return true;
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 
 
 bool ParseCertificatesFile(std::string_view certs_input,
@@ -554,7 +560,8 @@ bool ParseJSON(std::string_view hsts_json,
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net::transport_security_state { ... 
 bool ParseJSON(std::string_view hsts_json,
@@ -588,7 +595,8 @@ bool ParseJSON(std::string_view hsts_json,
  ... 
 ```
 ### patch
-```
+```cpp
+
 
 namespace {
 // NOTE: Do not add any host which has TLS terminated by Cloudflare.

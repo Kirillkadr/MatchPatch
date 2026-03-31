@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 #include "url/gurl.h"
@@ -17,13 +18,15 @@ namespace web_pref {
  ... 
 ```
 ### patch
-```
+```cpp
+
 #define WebPreferences WebPreferences_ChromiumImpl
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace blink { ... 
@@ -36,7 +39,8 @@ WebPreferences& operator=(WebPreferences&& other);
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 struct BLINK_COMMON_EXPORT WebPreferences : public WebPreferences_ChromiumImpl {
   using WebPreferences_ChromiumImpl::WebPreferences_ChromiumImpl;
 

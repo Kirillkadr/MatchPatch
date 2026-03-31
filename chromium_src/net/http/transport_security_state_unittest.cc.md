@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include <string>
 
@@ -11,7 +12,8 @@
  ...
 ```
 ### patch
-```
+```cpp
+
 #include "net/http/transport_security_state.h"
 #include "net/base/network_anonymization_key.h"
 #include "net/base/schemeful_site.h"
@@ -21,7 +23,8 @@
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
  namespace { ... 
@@ -33,7 +36,8 @@ return result;
  ... } ...  } ...
 ```
 ### patch
-```
+```cpp
+
 net::NetworkAnonymizationKey CreateNetworkAnonymizationKey(
     std::string_view top_frame_url) {
   net::SchemefulSite schemeful_site(url::Origin::Create(GURL(top_frame_url)));
@@ -44,7 +48,8 @@ net::NetworkAnonymizationKey CreateNetworkAnonymizationKey(
 ```
 
 ### match
-```
+```cpp
+
 ...
 TransportSecurityState::STSState sts_state;
   ASSERT_TRUE(state.GetStaticSTSState("hsts.example.com", &sts_state));
@@ -58,7 +63,8 @@ TransportSecurityState::STSState sts_state;
 >>> ...
 ```
 ### patch
-```
+```cpp
+
   EXPECT_EQ(state.GetSSLUpgradeDecision(CreateNetworkAnonymizationKey("dynamic.example.com"),"dynamic.example.com",
                                         /*is_top_level_nav=*/true),
             SSLUpgradeDecision::kNoUpgrade);
@@ -90,7 +96,8 @@ TransportSecurityState::STSState sts_state;
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net { ... 
  TEST_F(TransportSecurityStateTest, StaticOrDynamicSource) { ... 

@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace net { ... 
@@ -20,7 +21,8 @@ class NET_EXPORT TransportSecurityPersister
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
 
 // Use upstream version of TransportSerurityState to reference
 // TransportSecurityState::Delegate without build issues.
@@ -29,7 +31,8 @@ class NET_EXPORT TransportSecurityPersister
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 ;
@@ -39,7 +42,8 @@ class NET_EXPORT TransportSecurityPersister
  ... 
 ```
 ### patch
-```
+```cpp
+
 #undef TransportSecurityState
 
 ```

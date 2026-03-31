@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 #include <ostream>
@@ -12,7 +13,8 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include <optional>
 #include "net/cookies/site_for_cookies.h"
 #include "url/gurl.h"
@@ -21,7 +23,8 @@
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 #include "base/check_op.h"
@@ -290,13 +293,15 @@ class NET_EXPORT CookieOptions {
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 #define CookieOptions CookieOptions_ChromiumImpl
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  inline void PrintTo(const CookieOptions::SameSiteCookieContext& sscc,
@@ -307,7 +312,8 @@ class NET_EXPORT CookieOptions {
  ... 
 ```
 ### patch
-```
+```cpp
+
 #undef CookieOptions
 class CookieAccessDelegate;
 class NET_EXPORT CookieOptions : public CookieOptions_ChromiumImpl {

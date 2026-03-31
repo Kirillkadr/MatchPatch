@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 // Use of this source code is governed by a BSD-style license that can be
  // found in the LICENSE file. 
@@ -9,13 +10,15 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "third_party/blink/public/common/web_preferences/web_preferences_mojom_traits.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace mojo { ... 
  bool StructTraits<blink::mojom::WebPreferencesDataView,
@@ -28,7 +31,8 @@ return true;
  ... } ...  
 ```
 ### patch
-```
+```cpp
+
 bool StructTraits<blink::mojom::WebPreferencesDataView,
                   blink::web_pref::WebPreferences>::
     Read(blink::mojom::WebPreferencesDataView data,

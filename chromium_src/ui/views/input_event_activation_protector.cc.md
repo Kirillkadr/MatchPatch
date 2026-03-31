@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 // found in the LICENSE file.
  #include "ui/views/input_event_activation_protector.h"
@@ -10,11 +11,13 @@
  ...
  ```  
 ### patch
-```
+```cpp
+
 #include "ui/views/input_event_activation_protector.h"
 ```
 ### match
-```
+```cpp
+
 ...
 >>>
  namespace 
@@ -27,7 +30,8 @@ InputEventActivationProtector::InputEventActivationProtector() {
  ... } ...
  ```    
 ### patch
-```
+```cpp
+
 void InputEventActivationProtector::IgnoreNextWindowStationaryStateChanged() {
   ignore_next_window_stationary_state_changed_ = true;
 }

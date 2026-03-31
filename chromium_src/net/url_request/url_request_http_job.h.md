@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  
  # ifndef ... 
@@ -14,7 +15,8 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "net/base/isolation_info.h"
 #include "net/base/request_priority.h"
 #include "net/cookies/cookie_options.h"
@@ -22,7 +24,8 @@
 ```
 
 ### match
-```
+```cpp
+
 ...
  
  # ifndef ... 
@@ -39,7 +42,8 @@ void NotifyBeforeStartTransactionCallback(
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   CookieOptions CreateCookieOptions(
       CookieOptions::SameSiteCookieContext same_site_context) const;
 

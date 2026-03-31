@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #import "ios/components/webui/web_ui_url_constants.h"
 
@@ -25,7 +26,8 @@ AutocompleteProviderClientImpl::AutocompleteProviderClientImpl(
  ... 
 ```
 ### patch
-```
+```cpp
+
 void AutocompleteProviderClientImpl::OpenLeo(const std::u16string& query) {}
 
 bool AutocompleteProviderClientImpl::IsLeoProviderEnabled() {

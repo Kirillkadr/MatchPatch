@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  namespace ui { ... 
  void AddColorMixers(ColorProvider* provider, const ColorProviderKey& key) { ... 
@@ -9,7 +10,8 @@
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   AddRefColorMixer(provider, key);
   AddBraveRefColorMixer(provider, key);
   nala::AddNalaColorMixer(provider, key)

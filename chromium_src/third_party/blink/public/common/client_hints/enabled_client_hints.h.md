@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
 #define THIRD_PARTY_BLINK_PUBLIC_COMMON_CLIENT_HINTS_ENABLED_CLIENT_HINTS_H_
@@ -18,7 +19,8 @@
 ```
 
 ### match
-```
+```cpp
+
 ...
  # ifndef ... 
  namespace blink { ... 
@@ -30,7 +32,8 @@
  ... } ...  } ...  
 ```
 ### patch
-```
+```cpp
+
   void SetIsEnabled_ChromiumImpl(network::mojom::WebClientHintsType type,
                                  bool should_send);
 

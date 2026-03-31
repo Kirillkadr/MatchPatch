@@ -1,5 +1,6 @@
 ### match
-```
+```cpp
+
 ...
 #include <string>
 
@@ -11,20 +12,23 @@
  ... 
 ```
 ### patch
-```
+```cpp
+
 #include "base/feature_override.h"
 #include "brave/net/dns/secure_dns_endpoints.h"
 
 ```
 
 ### match
-```
+```cpp
+
 ...
  namespace net::features { ... 
  >>>  } ...  
 ```
 ### patch
-```
+```cpp
+
 OVERRIDE_FEATURE_DEFAULT_STATES({{
     {kEnableWebTransportDraft07, base::FEATURE_DISABLED_BY_DEFAULT},
     // Enable NIK-partitioning by default.
