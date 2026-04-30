@@ -7,8 +7,8 @@
 #include "components/policy/core/common/policy_types.h"
 
 #define POLICY_SOURCE_MERGED                    \
-  POLICY_SOURCE_BRAVE:                          \
-  return PolicyPriorityBrowser::kBravePriority; \
+  POLICY_SOURCE_BRAVE:
+  return PolicyPriorityBrowser::kBravePriority;
   case POLICY_SOURCE_MERGED
 
 #include <components/policy/core/common/policy_map.cc>  // IWYU pragma: export
