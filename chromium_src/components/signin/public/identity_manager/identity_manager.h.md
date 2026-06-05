@@ -1,0 +1,405 @@
+// Copyright 2017 The Chromium Authors
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+#ifndef COMPONENTS_SIGNIN_PUBLIC_IDENTITY_MANAGER_IDENTITY_MANAGER_H_
+#define COMPONENTS_SIGNIN_PUBLIC_IDENTITY_MANAGER_IDENTITY_MANAGER_H_
+
+#include <memory>
+#include <optional>
+#include <string>
+
+#include "base/gtest_prod_util.h"
+#include "base/memory/raw_ptr.h"
+#include "base/memory/weak_ptr.h"
+#include "base/observer_list.h"
+#include "base/scoped_observation.h"
+#include "base/scoped_observation_traits.h"
+#include "build/build_config.h"
+#include "components/account_manager_core/account.h"
+#include "components/keyed_service/core/keyed_service.h"
+#include "components/signin/internal/identity_manager/primary_account_manager.h"
+#include "components/signin/internal/identity_manager/profile_oauth2_token_service.h"
+#include "components/signin/internal/identity_manager/profile_oauth2_token_service_observer.h"
+#include "components/signin/public/base/consent_level.h"
+#include "components/signin/public/base/oauth_consumer_id.h"
+#include "components/signin/public/base/signin_client.h"
+#include "components/signin/public/base/signin_metrics.h"
+#include "components/signin/public/identity_manager/access_token_fetcher.h"
+#include "components/signin/public/identity_manager/account_info.h"
+#include "components/signin/public/identity_manager/identity_mutator.h"
+#include "google_apis/gaia/oauth2_access_token_manager.h"
+
+#if BUILDFLAG(IS_ANDROID)
+#include "base/android/jni_android.h"
+#include "base/containers/flat_map.h"
+#include "base/time/time.h"
+#endif
+
+#if BUILDFLAG(IS_CHROMEOS)
+namespace account_manager {
+class AccountManagerFacade;
+}
+#endif
+
+namespace network {
+class SharedURLLoaderFactory;
+class TestURLLoaderFactory;
+}  // namespace network
+
+class PrefRegistrySimple;
+
+class AccountFetcherService;
+class AccountTrackerService;
+class GaiaCookieManagerService;
+class NewTabPageUI;
+class PrivacySandboxSettingsDelegate;
+
+namespace signin {
+
+class AccountsInCookieJarInfo;
+struct AccountAvailabilityOptions;
+class IdentityManagerTest;
+class IdentityTestEnvironment;
+class DiagnosticsProvider;
+enum class ClearPrimaryAccountPolicy;
+struct CookieParamsForTest;
+
+// Gives access to information about the user's Google identities. See
+// ./README.md for detailed documentation.
+class IdentityManager : public KeyedService,
+                        public OAuth2AccessTokenManager::DiagnosticsObserver,
+                        public PrimaryAccountManager::Observer,
+                        public ProfileOAuth2TokenServiceObserver {
+ public:
+  class Observer {
+   public:
+    Observer() = default;
+    virtual ~Observer() = default;
+
+    Observer(const Observer&) = delete;
+    Observer& operator=(const Observer&) = delete;
+
+    // Called when there is a change in the primary account or in the consent
+    // level for the primary account.
+    // To avoid undesired UI changes during the account switching process, UI
+    // code can use `OnEndBatchOfPrimaryAccountChanges()`.
+    //
+    // Note: Observers are not allowed to change the primary account directly
+    // from this methood as that would lead to |event_details| not being correct
+    // for the future observers.
+    virtual void OnPrimaryAccountChanged(
+        const PrimaryAccountChangeEvent& event_details) {}
+
+    // Called when a new refresh token is associated with |account_info|.
+    // NOTE: On a signin event, the ordering of this callback wrt the
+    // |OnPrimaryAccountChanged| callback is undefined. If you as a client are
+    // interested in both callbacks, PrimaryAccountAccessTokenFetcher will
+    // likely meet your needs. Otherwise, if this lack of ordering is
+    // problematic for your use case, please contact blundell@chromium.org.
+    virtual void OnRefreshTokenUpdatedForAccount(
+        const CoreAccountInfo& account_info) {}
+
+    // Called when the refresh token previously associated with |account_id|
+    // has been removed. At the time that this callback is invoked, there is
+    // no longer guaranteed to be any AccountInfo associated with
+    // |account_id|.
+    // NOTE: It is not guaranteed that a call to
+    // OnRefreshTokenUpdatedForAccount() has previously occurred for this
+    // account due to corner cases.
+    // TODO(crbug.com/40593967): Eliminate these corner cases.
+    // NOTE: On a signout event, the ordering of this callback wrt the
+    // OnPrimaryAccountCleared() callback is undefined.If this lack of ordering
+    // is problematic for your use case, please contact blundell@chromium.org.
+    virtual void OnRefreshTokenRemovedForAccount(
+        const CoreAccountId& account_id) {}
+
+    // Called when the error state of the refresh token for |account_id| has
+    // changed. Note: It is always called after
+    // |OnRefreshTokenUpdatedForAccount| when the refresh token is updated. It
+    // is not called when the refresh token is removed.
+    // `token_operation_source` has a default value of
+    // `signin_metrics::SourceForRefreshTokenOperation::Unknown` which means
+    // that either the token did not change (example is when a token becomes
+    // invalid on the server) or that the operation value was not explicitly
+    // set.
+    virtual void OnErrorStateOfRefreshTokenUpdatedForAccount(
+        const CoreAccountInfo& account_info,
+        const GoogleServiceAuthError& error,
+        signin_metrics::SourceForRefreshTokenOperation token_operation_source) {
+    }
+
+    // Called after refresh tokens are loaded.
+    virtual void OnRefreshTokensLoaded() {}
+
+    // Called whenever the list of Gaia accounts in the cookie jar has changed.
+    //
+    // This observer method is also called when fetching the list of accounts in
+    // Gaia cookies fails after a number of internal retries.
+    //
+    // * `accounts_in_cookie_jar_info` contains the information about accounts
+    //    cookies. Accounts in this object are ordered by the order of accounts
+    //    in the cookie. If fetching accounts failed or hasn't finished yet,
+    //    this object will contain the last known state of accounts in the
+    //    cookie jar. See `AccountsInCookieJarInfo` documentation for more
+    //    details on the information available there.
+    // * `error` holds the last error that occurred while fetching the list of
+    //    accounts (or `GoogleServiceAuthError::AuthErrorNone()`, if fetching
+    //    succeeded).
+    virtual void OnAccountsInCookieUpdated(
+        const AccountsInCookieJarInfo& accounts_in_cookie_jar_info,
+        const GoogleServiceAuthError& error) {}
+
+    // Called when the Gaia cookie has been deleted explicitly by a user
+    // action, e.g. from the settings or by an extension.
+    virtual void OnAccountsCookieDeletedByUserAction() {}
+
+    // Called after a batch of refresh token state chagnes is completed.
+    virtual void OnEndBatchOfRefreshTokenStateChanges() {}
+
+    // Called after an account is updated.
+    virtual void OnExtendedAccountInfoUpdated(const AccountInfo& info) {}
+
+    // Called after removing an account info.
+    virtual void OnExtendedAccountInfoRemoved(const AccountInfo& info) {}
+
+#if BUILDFLAG(IS_IOS)
+    // Called after the list of accounts in `GetAccountsOnDevice` changes.
+    virtual void OnAccountsOnDeviceChanged() {}
+    // Called once the batch of primary account changes ended.
+    // This method is also called for each single primary account event, when
+    // there is no batch.
+    // UI code should prefer this event instead of `OnPrimaryAccountChanged()`,
+    // to avoid UI glitches when the user wants to switch from one primary
+    // account to another (by showing sign-out temporary state).
+    // See `StartBatchOfPrimaryAccountChanges()`.
+    virtual void OnEndBatchOfPrimaryAccountChanges() {}
+#endif  // BUILDFLAG(IS_IOS)
+
+    // Called on Shutdown(), for observers that aren't KeyedServices to remove
+    // their observers.
+    virtual void OnIdentityManagerShutdown(IdentityManager* identity_manager) {}
+  };
+
+  // Methods to register or remove observers.
+  void AddObserver(Observer* observer);
+  void RemoveObserver(Observer* observer);
+
+#if BUILDFLAG(IS_IOS)
+  // Whether a batch of primary account changes is in progress. See
+  // `OnEndBatchOfPrimaryAccountChanges()`.
+  bool IsBatchOfPrimaryAccountChangesInProgress();
+
+  // Starts a batch of primary account changes by setting
+  // `batch_of_primary_account_changes_in_progress_` to `true`. As long as the
+  // batch is running, `OnEndBatchOfPrimaryAccountChanges()` are not sent when
+  // `OnPrimaryAccountChanged()` occurs.
+  // The batch needs to be used when the primary account is switched from one
+  // account to another.
+  // See `OnEndBatchOfPrimaryAccountChanges()`.
+  base::ScopedClosureRunner StartBatchOfPrimaryAccountChanges();
+#endif  // BUILDFLAG(IS_IOS)
+
+  // Provides access to the core information of the user's primary account.
+  // The primary account may or may not be blessed with the sync consent.
+  // Returns an empty struct if no such info is available, either because there
+  // is no primary account yet or because the user signed out or the |consent|
+  // level required |ConsentLevel::kSync| was not granted.
+  // Note that `ConsentLevel::kSync` is deprecated, see the `ConsentLevel`
+  // documentation.
+  // Returns a non-empty struct if the primary account exists and was granted
+  // the required consent level.
+  // TODO(crbug.com/40067058): revisit this once `ConsentLevel::kSync` is
+  // removed.
+  // TODO(crbug.com/40116578): Update (./README.md).
+  CoreAccountInfo GetPrimaryAccountInfo(ConsentLevel consent_level) const;
+
+  // Provides access to the account ID of the user's primary account. Simple
+  // convenience wrapper over GetPrimaryAccountInfo().account_id.
+  CoreAccountId GetPrimaryAccountId(ConsentLevel consent_level) const;
+
+  // Returns whether the user's primary account is available. If consent is
+  // |ConsentLevel::kSync| then true implies that the user has blessed this
+  // account for sync.
+  // Note that `ConsentLevel::kSync` is deprecated, see the `ConsentLevel`
+  // documentation.
+  // TODO(crbug.com/40067058): revisit this once `ConsentLevel::kSync` is
+  // removed.
+  bool HasPrimaryAccount(ConsentLevel consent_level) const;
+
+  // Creates an AccessTokenFetcher given the passed-in information.
+  //
+  // Only use this method if the feature requires dynamic scopes each time it
+  // requests an access token. Don't use this method if the feature gets it's
+  // scopes from finch. In that case you should add your finch logic in the
+  // OAuthConsumerRegistry subclasses.
+  //
+  // If you create a new OAuthConsumerId for this method then it will also need
+  // to be added in oauth_consumer_registry.cc. Otherwise this method will
+  // crash.
+  [[nodiscard]] std::unique_ptr<AccessTokenFetcher>
+  CreateAccessTokenFetcherWithDynamicScopesForAccount(
+      const CoreAccountId& account_id,
+      OAuthConsumerId oauth_consumer_id,
+      const ScopeSet& scopes,
+      AccessTokenFetcher::TokenCallback callback,
+      AccessTokenFetcher::Mode mode,
+      AccessTokenFetcher::Source token_source =
+          AccessTokenFetcher::Source::kProfile);
+
+  // Creates an AccessTokenFetcher for the |oauth_consumer_id| feature.
+  [[nodiscard]] std::unique_ptr<AccessTokenFetcher>
+  CreateAccessTokenFetcherForAccount(const CoreAccountId& account_id,
+                                     OAuthConsumerId oauth_consumer_id,
+                                     AccessTokenFetcher::TokenCallback callback,
+                                     AccessTokenFetcher::Mode mode,
+                                     AccessTokenFetcher::Source token_source =
+                                         AccessTokenFetcher::Source::kProfile);
+
+  // Creates an AccessTokenFetcher for the |oauth_conumser_id| feature, allowing
+  // to specify a custom |url_loader_factory| as well.
+  [[nodiscard]] std::unique_ptr<AccessTokenFetcher>
+  CreateAccessTokenFetcherForAccount(
+      const CoreAccountId& account_id,
+      OAuthConsumerId oauth_consumer_id,
+      scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory,
+      AccessTokenFetcher::TokenCallback callback,
+      AccessTokenFetcher::Mode mode);
+
+  // If an entry exists in the cache of access tokens corresponding to the
+  // given information, removes that entry; in this case, the next access token
+  // request for |account_id| and |oauth_consumer_id| will fetch a new token
+  // from the network. Otherwise, is a no-op.
+  //
+  // This method doesn't support `OAuthConsumerId` using dynamic scopes.
+  void RemoveAccessTokenFromCache(const CoreAccountId& account_id,
+                                  OAuthConsumerId oauth_consumer_id,
+                                  const std::string& access_token);
+
+  // Provides the information of all accounts that have refresh tokens.
+  // NOTE: The accounts should not be assumed to be in any particular order; in
+  // particular, they are not guaranteed to be in the order in which the
+  // refresh tokens were added.
+  std::vector<CoreAccountInfo> GetAccountsWithRefreshTokens() const;
+
+  // Same functionality as GetAccountsWithRefreshTokens() but returning the
+  // extended account information.
+  std::vector<AccountInfo> GetExtendedAccountInfoForAccountsWithRefreshToken()
+      const;
+
+  // Returns true if (a) the primary account exists, and (b) a refresh token
+  // exists for the primary account.
+  bool HasPrimaryAccountWithRefreshToken(ConsentLevel consent_level) const;
+
+  // Returns true if a refresh token exists for |account_id|.
+  bool HasAccountWithRefreshToken(const CoreAccountId& account_id) const;
+
+#if BUILDFLAG(IS_IOS)
+  bool HasAccountWithRefreshTokenOnDevice(
+      const CoreAccountId& account_id) const;
+#endif
+
+  // Returns true if all refresh tokens have been loaded from disk.
+  bool AreRefreshTokensLoaded() const;
+
+  // Returns true if (a) a refresh token exists for |account_id|, and (b) the
+  // refresh token is in a persistent error state (defined as
+  // GoogleServiceAuthError::IsPersistentError() returning true for the error
+  // returned by GetErrorStateOfRefreshTokenForAccount(account_id)).
+  bool HasAccountWithRefreshTokenInPersistentErrorState(
+      const CoreAccountId& account_id) const;
+
+#if BUILDFLAG(ENABLE_DICE_SUPPORT)
+  // Returns `true` if (a) a refresh token exists for `account_id`, and (b) the
+  // refresh token is bound to a device, it returns `false` otherwise.
+  bool HasAccountWithBoundRefreshToken(const CoreAccountId& account_id) const;
+
+  // Returns whether all bound refresh tokens share the same binding key.
+  //
+  // Unbound tokens are ignored in this check. Returns `true` if there are zero
+  // or one bound tokens, or if all bound tokens use the same key. Returns
+  // `false` only if there are multiple bound tokens with different keys.
+  bool AllBoundTokensShareSameBindingKey() const;
+
+  // Returns the wrapped binding key to reuse if any existing account is already
+  // bound. It returns an empty vector if no existing account is bound.
+  //
+  // NOTE: The refresh tokens must be loaded to correctly check the binding
+  // status of the accounts. If the refresh tokens are not loaded, calling this
+  // function results in a crash.
+  std::vector<uint8_t> GetWrappedBindingKey() const;
+#endif  // BUILDFLAG(ENABLE_DICE_SUPPORT)
+
+  // Returns the error state of the refresh token associated with |account_id|.
+  // In particular: Returns GoogleServiceAuthError::AuthErrorNone() if either
+  // (a) no refresh token exists for |account_id|, or (b) the refresh token is
+  // not in a persistent error state. Otherwise, returns the last persistent
+  // error that was detected when using the refresh token.
+  GoogleServiceAuthError GetErrorStateOfRefreshTokenForAccount(
+      const CoreAccountId& account_id) const;
+
+  // Returns extended information for account identified by |account_info|, or
+  // an empty AccountInfo if the account is not found.
+  // Note: these functions return an empty AccountInfo if no refresh token is
+  // available for the account (in particular before tokens are loaded).
+  AccountInfo FindExtendedAccountInfo(
+      const CoreAccountInfo& account_info) const;
+  // The same as `FindExtendedAccountInfo()` but finds an account by account ID.
+  AccountInfo FindExtendedAccountInfoByAccountId(
+      const CoreAccountId& account_id) const;
+  // The same as `FindExtendedAccountInfo()` but finds an account by email.
+  AccountInfo FindExtendedAccountInfoByEmailAddress(
+      const std::string& email_address) const;
+  // The same as `FindExtendedAccountInfo()` but finds an account by gaia ID.
+  AccountInfo FindExtendedAccountInfoByGaiaId(const GaiaId& gaia_id) const;
+
+  // Provides the information of all accounts that are present in the Gaia
+  // cookie in the cookie jar, ordered by their order in the cookie.
+  // If the returned accounts are not fresh, an internal update will be
+  // triggered and there will be a subsequent invocation of
+  // IdentityManager::Observer::OnAccountsInCookieJarChanged().
+  AccountsInCookieJarInfo GetAccountsInCookieJar() const;
+
+  // Returns the session index of the primary account in the cookie jar, or
+  // std::nullopt if the primary account is not signed in or not found in the
+  // cookie jar.
+  std::optional<size_t> GetSessionIndexForPrimaryAccount() const;
+
+  // Returns pointer to the object used to change the signed-in state of the
+  // primary account, if supported on the current platform. Otherwise, returns
+  // null.
+  PrimaryAccountMutator* GetPrimaryAccountMutator();
+
+  // Returns pointer to the object used to seed accounts and mutate state of
+  // accounts' refresh tokens, if supported on the current platform. Otherwise,
+  // returns null.
+  AccountsMutator* GetAccountsMutator();
+
+  // Returns pointer to the object used to manipulate the cookies stored and the
+  // accounts associated with them. Guaranteed to be non-null.
+  AccountsCookieMutator* GetAccountsCookieMutator();
+
+  // Returns pointer to the object used to seed accounts information from the
+  // device-level accounts. May be null if the system has no such notion.
+  DeviceAccountsSynchronizer* GetDeviceAccountsSynchronizer();
+
+#if BUILDFLAG(IS_IOS)
+  // Gets all accounts on the device, including the ones from other profiles, in
+  // the order provided by the system (usually the order in which the accounts
+  // were added).
+  [[nodiscard]] std::vector<AccountInfo> GetAccountsOnDevice();
+#endif
+
+  // Observer interface for classes that want to monitor status of various
+  // requests. Mostly useful in tests and debugging contexts (e.g., WebUI).
+  class DiagnosticsObserver {
+   public:
+    DiagnosticsObserver() = default;
+    virtual ~DiagnosticsObserver() = default;
+
+    DiagnosticsObserver(const DiagnosticsObserver&) = delete;
+    DiagnosticsObserver& operator=(const DiagnosticsObserver&) = delete;
+
+    // Called when receiving request for access token.
+    virtual void OnAccessTokenRequested(const CoreAccountId& account_id,
+                                        const std::string& consumer_id,

@@ -1,11 +1,12 @@
 ### match
 ```cpp
 ...
-// found in the LICENSE file.
- #include "components/content_settings/core/browser/content_settings_info.h"
+#include <optional>
+
+ #include <variant>
  
  >>> 
-#include <optional>
+#include "components/content_settings/core/browser/content_settings_utils.h"
 
  ... 
 ```
@@ -58,7 +59,7 @@ bool IsMorePermissive_BraveImpl(ContentSettingsType content_type,
           ContentSettingsType::BRAVE_HTTPS_UPGRADE,
       });
 
-  const bool is_more_permissive = IsMorePermissive(info_->website_settings_info()->type(),setting, initial_setting);
+  const bool is_more_permissive = IsMorePermissive(setting, initial_setting);
   if (is_more_permissive || kOffTheRecordAwareTypes.contains(content_type) ||
       base::FeatureList::IsEnabled(kAllowIncognitoPermissionInheritance)) {
     return is_more_permissive;
@@ -80,16 +81,18 @@ bool IsMorePermissive_BraveImpl(ContentSettingsType content_type,
  namespace content_settings { ... 
  
  PermissionSetting ContentSettingsInfo::Delegate::InheritInIncognito(
-    const PermissionSetting& setting) const { ...   >>> 
+    const PermissionSetting& setting) const { ... 
+>>> 
  if 
  (IsMorePermissive(content_setting, initial_setting)) 
- {  <<< 
+ { 
+<<< 
 return initial_setting;
  ... } ...  } ...  } ...  
 ```
 ### patch
 ```cpp
-      if (IsMorePermissive(info_->website_settings_info()->type(),content_setting, initial_setting)) {
+      if (IsMorePermissive_BraveImpl(info_->website_settings_info()->type(),content_setting, initial_setting)) {
 
 ```
 
